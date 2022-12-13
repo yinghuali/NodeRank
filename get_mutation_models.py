@@ -1,20 +1,40 @@
 import torch.nn.functional as F
+import argparse
 from sklearn.model_selection import ParameterGrid
 from config import *
 from utils import *
 from sklearn.model_selection import train_test_split
 
-path_x_np = './data/lastfm/x_np.pkl'
-path_edge_index = './data/lastfm/edge_index_np.pkl'
-path_y = './data/lastfm/y_np.pkl'
-epochs_list = epochs_tagcn
-dic_mutation = dic_mutation_tagcn
-path_save_model = 'mutation_models/lastfm_tagcn/lastfm_tagcn_'
-# path_save_config = '/Users/yinghua.li/Documents/Pycharm/GNNEST/mutation/mutation_models/lastfm_tagcn/lastfm_tagcn_'
-path_save_config = '/mnt/irisgpfs/users/yili/pycharm/GNNEST/mutation/mutation_models/lastfm_tagcn/lastfm_tagcn_'
+ap = argparse.ArgumentParser()
+ap.add_argument("--path_x_np", type=str)
+ap.add_argument("--path_edge_index", type=str)
+ap.add_argument("--path_y", type=str)
+ap.add_argument("--path_save_model", type=str)
+ap.add_argument("--path_save_config", type=str)
+ap.add_argument("--model_name", type=str)
+args = ap.parse_args()
 
-model_name = 'tagcn'
+path_x_np = args.path_x_np
+path_edge_index = args.path_edge_index
+path_y = args.path_y
+path_save_model = args.path_save_model
+path_save_config = args.path_save_config
+model_name = args.model_name
 
+if model_name == 'gcn':
+    epochs_list = epochs_gcn
+    dic_mutation = dic_mutation_gcn
+if model_name == 'gat':
+    epochs_list = epochs_gat
+    dic_mutation = dic_mutation_gat
+if model_name == 'graphsage':
+    epochs_list = epochs_graphsage
+    dic_mutation = dic_mutation_graphsage
+if model_name == 'tagcn':
+    epochs_list = epochs_tagcn
+    dic_mutation = dic_mutation_tagcn
+
+# python get_mutation_models.py --path_x_np './data/lastfm/x_np.pkl' --path_edge_index './data/lastfm/edge_index_np.pkl' --path_y './data/lastfm/y_np.pkl' --path_save_model './test/lastfm_tagcn/lastfm_tagcn_' --path_save_config './test/lastfm_tagcn/lastfm_tagcn_' --model_name 'tagcn'
 
 
 def get_data():
