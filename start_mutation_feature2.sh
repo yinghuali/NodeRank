@@ -7,4 +7,4 @@
 #SBATCH -p batch
 #SBATCH --mem 100G
 
-python mutation_node_edge.py --path_edge_index_np 'data/pubmed/edge_index_np.pkl' --n_edges 50 --save_path_pkl 'data/pubmed/mutation_edge_index_np_list.pkl'
+python mutation_node_feature.py --path_node_feature 'data/citeseer/x_np.pkl' --n_feature 50 --save_path_pkl 'data/citeseer/mutation_x_np_list.pkl'
