@@ -14,7 +14,7 @@ path_edge_index_np = args.path_edge_index_np
 n_edges = args.n_edges
 save_path_pkl = args.save_path_pkl
 
-# python mutation_node_edge.py --path_edge_index_np 'data/citeseer/edge_index_np.pkl' --n_edges 480 --save_path_pkl 'data/citeseer/mutation_edge_index_np_list.pkl'
+# python mutation_node_edge.py --path_edge_index_np 'data/cora/edge_index_np.pkl' --n_edges 10 --save_path_pkl 'data/cora/mutation_edge_index_np_list.pkl'
 
 def get_mutation_node_edge(path_edge_index_np, n_edges, save_path_pkl):
     data_list = []

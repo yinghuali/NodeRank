@@ -10,7 +10,7 @@ ap.add_argument("--n_feature", type=int)
 ap.add_argument("--save_path_pkl", type=str)
 args = ap.parse_args()
 
-# python mutation_node_feature.py --path_node_feature 'data/citeseer/x_np.pkl' --n_feature 480 --save_path_pkl 'data/citeseer/mutation_x_np_list.pkl'
+# python mutation_node_feature.py --path_node_feature 'data/cora/x_np.pkl' --n_feature 10 --save_path_pkl 'data/cora/mutation_x_np_list.pkl'
 
 
 path_node_feature = args.path_node_feature
