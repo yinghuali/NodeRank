@@ -2,6 +2,7 @@ import os
 import torch
 import numpy as np
 import pickle
+import torch
 from sklearn.model_selection import train_test_split
 from models.gcn import GCN, Target_GCN
 from models.gat import GAT, Target_GAT
@@ -191,3 +192,57 @@ def adj_to_edge_index(adj):
                 down_list.append(i)
     m = np.array([up_list, down_list])
     return m
+
+
+def get_mutation_nodel_edge_features(num_node_features, target_hidden_channel, num_classes, target_model_path, x, y, edge_index, mutation_edge_index_list, model_name):
+    target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
+    mutation_pre_idx_np = np.array([target_model(x, torch.from_numpy(tmp_edge_index)).argmax(dim=1).numpy() for tmp_edge_index in mutation_edge_index_list]).T
+
+    feature_list = []
+    for i in range(len(target_pre)):
+        tmp_list = []
+        for j in range(len(mutation_pre_idx_np[i])):
+            if mutation_pre_idx_np[i][j] != target_pre[i]:
+                tmp_list.append(1)
+            else:
+                tmp_list.append(0)
+        feature_list.append(tmp_list)
+    feature_np = np.array(feature_list)
+
+    label_list = []
+    for i in range(len(target_pre)):
+        if target_pre[i] != y[i]:
+            label_list.append(1)
+        else:
+            label_list.append(0)
+    label_np = np.array(label_list)
+
+    return feature_np, label_np
+
+
+def get_mutation_nodel_attribute_features(num_node_features, target_hidden_channel, num_classes, target_model_path, x, y, edge_index, mutation_attribute_index_list, model_name):
+    target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
+    mutation_pre_idx_np = np.array([target_model(torch.from_numpy(tmp_x.astype(np.float32)), edge_index).argmax(dim=1).numpy() for tmp_x in mutation_attribute_index_list]).T
+
+    feature_list = []
+    for i in range(len(target_pre)):
+        tmp_list = []
+        for j in range(len(mutation_pre_idx_np[i])):
+            if mutation_pre_idx_np[i][j] != target_pre[i]:
+                tmp_list.append(1)
+            else:
+                tmp_list.append(0)
+        feature_list.append(tmp_list)
+    feature_np = np.array(feature_list)
+
+    label_list = []
+    for i in range(len(target_pre)):
+        if target_pre[i] != y[i]:
+            label_list.append(1)
+        else:
+            label_list.append(0)
+    label_np = np.array(label_list)
+
+    return feature_np, label_np

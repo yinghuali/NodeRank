@@ -3,6 +3,44 @@
 3. influence of different feature combination
 4. mutation rule contribution
 
+all, 原始kill
+cora_gcn_xgb,0.802242930263404
+cora_gcn_lgb,0.8068228838970417
+cora_gcn_rf,0.8057175733047653
+cora_gcn_lr,0.7852551566990325
+cora_gcn_mutation,0.8122984225233957
+cora_gcn_fusion,0.8163795693256471
+cora_gcn_margin,0.7283174905481774
+cora_gcn_deepGini,0.726826738313466
+cora_gcn_leastConfidence,0.7443019821903288
+cora_gcn_random,0.5008389023982406
+
+mutation model + mutation nodel, 原始kill
+cora_gcn_xgb,0.7994428100963037
+cora_gcn_lgb,0.8087670968875588
+cora_gcn_rf,0.8137891747581071
+cora_gcn_lr,0.7838550966154822
+cora_gcn_mutation,0.8122984225233957
+cora_gcn_fusion,0.8156710368947008
+cora_gcn_margin,0.7283174905481774
+cora_gcn_deepGini,0.726826738313466
+cora_gcn_leastConfidence,0.7443019821903288
+cora_gcn_random,0.4964063235102397
+
+mutation model + mutation nodel, kill模型和kill node
+cora_gcn_xgb,0.7994428100963037，
+cora_gcn_lgb,0.8087670968875588
+cora_gcn_rf,0.8097193644747508
+cora_gcn_lr,0.7838550966154822
+cora_gcn_mutation,0.5311017395888245
+cora_gcn_fusion,0.791966375884957
+cora_gcn_margin,0.7283174905481774
+cora_gcn_deepGini,0.726826738313466
+cora_gcn_leastConfidence,0.7443019821903288
+cora_gcn_random,0.4955334115553137
+
+
+
 
 ls -lh
 

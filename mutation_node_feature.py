@@ -26,19 +26,19 @@ def get_mutation_node_feature(path_node_feature, n_feature, save_path_pkl):
     col = x_np.shape[1]
 
     for i in range(n_g_feature):
+        tmp_x = np.around(np.random.rand(row, col) * 0.05, 2)
+        data_list.append(x_np+tmp_x)
+
+        tmp_x = np.around(np.random.rand(row, col) * 0.08, 2)
+        data_list.append(x_np+tmp_x)
+
         tmp_x = np.around(np.random.rand(row, col) * 0.10, 2)
         data_list.append(x_np+tmp_x)
 
+        tmp_x = np.around(np.random.rand(row, col) * 0.12, 2)
+        data_list.append(x_np+tmp_x)
+
         tmp_x = np.around(np.random.rand(row, col) * 0.15, 2)
-        data_list.append(x_np+tmp_x)
-
-        tmp_x = np.around(np.random.rand(row, col) * 0.20, 2)
-        data_list.append(x_np+tmp_x)
-
-        tmp_x = np.around(np.random.rand(row, col) * 0.25, 2)
-        data_list.append(x_np+tmp_x)
-
-        tmp_x = np.around(np.random.rand(row, col) * 0.30, 2)
         data_list.append(x_np+tmp_x)
 
     pickle.dump(data_list, open(save_path_pkl, 'wb'), protocol=4)
