@@ -99,40 +99,39 @@ def main():
     # XGB
     model = XGBClassifier()
     model.fit(x_train, y_train)
+    xgb_pre = model.predict(x_test)
+    y_pred_train_xgb = model.predict_proba(x_train)[:, 1]
     y_pred_test_xgb = model.predict_proba(x_test)[:, 1]
     xgb_rank_idx = y_pred_test_xgb.argsort()[::-1].copy()
-    xgb_pre_list = list(y_pred_test_xgb).copy()
 
     # LR
     model = LogisticRegression(solver='liblinear')
     model.fit(x_train, y_train)
+    lr_pre = model.predict(x_test)
+    y_pred_train_lr = model.predict_proba(x_train)[:, 1]
     y_pred_test_lr = model.predict_proba(x_test)[:, 1]
     lr_rank_idx = y_pred_test_lr.argsort()[::-1].copy()
-    lr_pre_list = list(y_pred_test_lr).copy()
 
     # RF
     model = RandomForestClassifier()
     model.fit(x_train, y_train)
+    rf_pre = model.predict(x_test)
+    y_pred_train_rf = model.predict_proba(x_train)[:, 1]
     y_pred_test_rf = model.predict_proba(x_test)[:, 1]
     rf_rank_idx = y_pred_test_rf.argsort()[::-1].copy()
-    rf_pre_list = list(y_pred_test_rf).copy()
 
     # LGBM
     model = LGBMClassifier()
     model.fit(x_train, y_train)
+    lgb_pre = model.predict(x_test)
+    y_pred_train_lgb = model.predict_proba(x_train)[:, 1]
     y_pred_test_lgb = model.predict_proba(x_test)[:, 1]
     lgb_rank_idx = y_pred_test_lgb.argsort()[::-1].copy()
-    lgb_pre_list = list(y_pred_test_lgb).copy()
-
-    # Kill pro比例图
-    y_pred_test_kill = Mutation_probability(num_node_features, target_hidden_channel, num_classes, target_model_path, x,
-                                            edge_index, test_idx, model_list, model_name)
 
     # fusion model
     y_pred_test_fusion = y_pred_test_xgb + y_pred_test_lr + y_pred_test_rf + y_pred_test_lgb
 
     fusion_rank_idx = y_pred_test_fusion.argsort()[::-1].copy()
-    fusion_pre_list = list(y_pred_test_fusion).copy()
 
     target_pre = target_model(x, edge_index).argmax(dim=1).numpy()[test_idx]
     idx_miss_list = get_idx_miss_class(target_pre, test_y)
@@ -173,7 +172,6 @@ def main():
     df = pd.DataFrame(columns=None, data=res_list)
     df.to_csv(path_result_pfd, mode='a', header=False, index=False)
 
-
     fusion_apfd = [apfd(idx_miss_list, fusion_rank_idx)]
     rf_apfd = [apfd(idx_miss_list, rf_rank_idx)]
     xgb_apfd = [apfd(idx_miss_list, xgb_rank_idx)]
@@ -200,8 +198,66 @@ def main():
     df = pd.DataFrame(columns=None, data=res_list)
     df.to_csv(path_result_apfd, mode='a', header=False, index=False)
 
+    # Different model fusion methods
+    y_pred_test_fusion_weight = y_pred_test_xgb*apfd(idx_miss_list, xgb_rank_idx) + y_pred_test_lr*apfd(idx_miss_list, lr_rank_idx) + \
+                                y_pred_test_rf*apfd(idx_miss_list, rf_rank_idx) + y_pred_test_lgb*apfd(idx_miss_list, lgb_rank_idx)
+    fusion_weight_rank_idx = y_pred_test_fusion_weight.argsort()[::-1].copy()
+    fusion_weight_ratio_list = get_res_ratio_list(idx_miss_list, fusion_weight_rank_idx, select_ratio_list)
+    fusion_weight_ratio_list.insert(0, subject_name + '_' + 'fusion_weight')
+
+    res_list = [fusion_weight_ratio_list]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
+
+    fusion_weight_apfd = [apfd(idx_miss_list, fusion_weight_rank_idx)]
+    fusion_weight_apfd.insert(0, subject_name + '_' + 'fusion_weight')
+
+    res_list = [fusion_weight_apfd]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
+
+    # Stacking
+    feature_stacking_train_pre = np.array([y_pred_train_xgb, y_pred_train_lr, y_pred_train_rf, y_pred_train_lgb]).T
+    feature_stacking_test_pre = np.array([y_pred_test_xgb, y_pred_test_lr, y_pred_test_rf, y_pred_test_lgb]).T
+    model = RandomForestClassifier()
+    model.fit(feature_stacking_train_pre, y_train)
+    y_pred_test_stacking = model.predict_proba(feature_stacking_test_pre)[:, 1]
+    stacking_rank_idx = y_pred_test_stacking.argsort()[::-1].copy()
+    fusion_stacking_ratio_list = get_res_ratio_list(idx_miss_list, stacking_rank_idx, select_ratio_list)
+    fusion_stacking_ratio_list.insert(0, subject_name + '_' + 'fusion_stacking')
+
+    res_list = [fusion_stacking_ratio_list]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
+
+    fusion_stacking_apfd = [apfd(idx_miss_list, stacking_rank_idx)]
+    fusion_stacking_apfd.insert(0, subject_name + '_' + 'fusion_stacking')
+
+    res_list = [fusion_stacking_apfd]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
+
+    # voting
+    voting_pre = xgb_pre+lr_pre+rf_pre+lgb_pre
+    voting_rank_idx = voting_pre.argsort()[::-1].copy()
+    fusion_voting_ratio_list = get_res_ratio_list(idx_miss_list, voting_rank_idx, select_ratio_list)
+    fusion_voting_ratio_list.insert(0, subject_name + '_' + 'fusion_voting')
+
+    res_list = [fusion_voting_ratio_list]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
+
+    fusion_voting_apfd = [apfd(idx_miss_list, voting_rank_idx)]
+    fusion_voting_apfd.insert(0, subject_name + '_' + 'fusion_voting')
+
+    res_list = [fusion_voting_apfd]
+    df = pd.DataFrame(columns=None, data=res_list)
+    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
+
+
 
 if __name__ == '__main__':
     main()
+
 
 
