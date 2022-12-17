@@ -1,0 +1,13 @@
+lastfm_tagcn_xgb,0.8205817908088957
+lastfm_tagcn_lgb,0.8220756809660059
+lastfm_tagcn_rf,0.8192376770201732
+lastfm_tagcn_lr,0.8139696806148061
+lastfm_tagcn_mutation,0.710021007426842
+lastfm_tagcn_fusion,0.8226870526076582
+lastfm_tagcn_margin,0.76321421377736
+lastfm_tagcn_deepGini,0.7398891267521253
+lastfm_tagcn_leastConfidence,0.7722337208581669
+lastfm_tagcn_random,0.5002701784921135
+lastfm_tagcn_fusion_weight,0.8226889893710425
+lastfm_tagcn_fusion_stacking,0.7995194890043487
+lastfm_tagcn_fusion_voting,0.7953560933158422

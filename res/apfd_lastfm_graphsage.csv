@@ -1,0 +1,13 @@
+lastfm_graphsage_xgb,0.8091898059407511
+lastfm_graphsage_lgb,0.8155416771319418
+lastfm_graphsage_rf,0.8281826278636297
+lastfm_graphsage_lr,0.8037541971261253
+lastfm_graphsage_mutation,0.6983261894060571
+lastfm_graphsage_fusion,0.8306447215355532
+lastfm_graphsage_margin,0.7720972907055137
+lastfm_graphsage_deepGini,0.7592208712837257
+lastfm_graphsage_leastConfidence,0.7809376941583936
+lastfm_graphsage_random,0.524905564662181
+lastfm_graphsage_fusion_weight,0.8306736387431094
+lastfm_graphsage_fusion_stacking,0.7925012723571325
+lastfm_graphsage_fusion_voting,0.7891675314288735

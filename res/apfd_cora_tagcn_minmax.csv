@@ -1,0 +1,13 @@
+cora_tagcn_minmax_xgb,0.7971217712177122
+cora_tagcn_minmax_lgb,0.8018395517288506
+cora_tagcn_minmax_rf,0.8103184365176985
+cora_tagcn_minmax_lr,0.7843187098537652
+cora_tagcn_minmax_mutation,0.8135984693180265
+cora_tagcn_minmax_fusion,0.8111275112751127
+cora_tagcn_minmax_margin,0.7376875768757688
+cora_tagcn_minmax_deepGini,0.7019570862375291
+cora_tagcn_minmax_leastConfidence,0.7451059177258439
+cora_tagcn_minmax_random,0.5130381303813037
+cora_tagcn_minmax_fusion_weight,0.8111111111111111
+cora_tagcn_minmax_fusion_stacking,0.7822468224682246
+cora_tagcn_minmax_fusion_voting,0.7750690173568402

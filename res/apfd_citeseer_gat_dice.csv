@@ -1,0 +1,13 @@
+citeseer_gat_dice_xgb,0.7174708768714219
+citeseer_gat_dice_lgb,0.7251079417291952
+citeseer_gat_dice_rf,0.7193692329932113
+citeseer_gat_dice_lr,0.7055843309249304
+citeseer_gat_dice_mutation,0.7093755881221822
+citeseer_gat_dice_fusion,0.722737724100122
+citeseer_gat_dice_margin,0.64192939533539
+citeseer_gat_dice_deepGini,0.6226758093243108
+citeseer_gat_dice_leastConfidence,0.6452978864423007
+citeseer_gat_dice_random,0.5144531452433361
+citeseer_gat_dice_fusion_weight,0.7227404516232854
+citeseer_gat_dice_fusion_stacking,0.6983727596806617
+citeseer_gat_dice_fusion_voting,0.696695332935115

@@ -1,0 +1,13 @@
+pubmed_gcn_dice_xgb,0.7512605912200232
+pubmed_gcn_dice_lgb,0.7575789278121935
+pubmed_gcn_dice_rf,0.7517151532871613
+pubmed_gcn_dice_lr,0.7421857202029616
+pubmed_gcn_dice_mutation,0.7365557748417788
+pubmed_gcn_dice_fusion,0.7574516961180247
+pubmed_gcn_dice_margin,0.5838005348147336
+pubmed_gcn_dice_deepGini,0.6606058391048248
+pubmed_gcn_dice_leastConfidence,0.6732708367596806
+pubmed_gcn_dice_random,0.5010293508518661
+pubmed_gcn_dice_fusion_weight,0.7574660867764316
+pubmed_gcn_dice_fusion_stacking,0.7303329952670723
+pubmed_gcn_dice_fusion_voting,0.7338082250607605

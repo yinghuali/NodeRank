@@ -1,0 +1,13 @@
+cora_gat_pgdattack_xgb,0.815332200941057
+cora_gat_pgdattack_lgb,0.8202847901494889
+cora_gat_pgdattack_rf,0.8315696649029982
+cora_gat_pgdattack_lr,0.8005330053300533
+cora_gat_pgdattack_mutation,0.8253284913801519
+cora_gat_pgdattack_fusion,0.8277104199613424
+cora_gat_pgdattack_margin,0.7360061695855054
+cora_gat_pgdattack_deepGini,0.7188706014044267
+cora_gat_pgdattack_leastConfidence,0.7492369368138126
+cora_gat_pgdattack_random,0.49556805091860445
+cora_gat_pgdattack_fusion_weight,0.8283937601280774
+cora_gat_pgdattack_fusion_stacking,0.785948573771452
+cora_gat_pgdattack_fusion_voting,0.789365274605127

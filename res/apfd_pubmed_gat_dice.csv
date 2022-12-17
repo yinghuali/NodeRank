@@ -1,0 +1,13 @@
+pubmed_gat_dice_xgb,0.7627263496800575
+pubmed_gat_dice_lgb,0.7671170789383759
+pubmed_gat_dice_rf,0.761762601376635
+pubmed_gat_dice_lr,0.7390990928138914
+pubmed_gat_dice_mutation,0.7227003806560753
+pubmed_gat_dice_fusion,0.7698572606984806
+pubmed_gat_dice_margin,0.6363567392807625
+pubmed_gat_dice_deepGini,0.6413462436590954
+pubmed_gat_dice_leastConfidence,0.6566745407853207
+pubmed_gat_dice_random,0.501459268108647
+pubmed_gat_dice_fusion_weight,0.7695773326091527
+pubmed_gat_dice_fusion_stacking,0.730197706300179
+pubmed_gat_dice_fusion_voting,0.7349004597624272

@@ -1,0 +1,13 @@
+cora_gat_xgb,0.8131505508603473
+cora_gat_lgb,0.8210133714240369
+cora_gat_rf,0.8278115039214908
+cora_gat_lr,0.7865399621738153
+cora_gat_mutation,0.8264360062955468
+cora_gat_fusion,0.8219193482257403
+cora_gat_margin,0.7438664709227737
+cora_gat_deepGini,0.7200201034268406
+cora_gat_leastConfidence,0.7527609147059212
+cora_gat_random,0.5032535809229061
+cora_gat_fusion_weight,0.8208282082820828
+cora_gat_fusion_stacking,0.7719715906836487
+cora_gat_fusion_voting,0.7684997817720113

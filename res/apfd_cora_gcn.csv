@@ -1,0 +1,13 @@
+cora_gcn_xgb,0.8040737780649696
+cora_gcn_lgb,0.808829447741482
+cora_gcn_rf,0.8136021221963371
+cora_gcn_lr,0.7892342748312275
+cora_gcn_mutation,0.8122984225233957
+cora_gcn_fusion,0.8193894150923076
+cora_gcn_margin,0.7283174905481774
+cora_gcn_deepGini,0.726826738313466
+cora_gcn_leastConfidence,0.7443019821903288
+cora_gcn_random,0.4787553635905023
+cora_gcn_fusion_weight,0.8188792717420261
+cora_gcn_fusion_stacking,0.7852381519206897
+cora_gcn_fusion_voting,0.7845919703436666

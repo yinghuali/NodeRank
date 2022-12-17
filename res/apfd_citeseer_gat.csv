@@ -1,0 +1,13 @@
+citeseer_gat_xgb,0.7210834687898908
+citeseer_gat_lgb,0.727493548594466
+citeseer_gat_rf,0.7243895271418208
+citeseer_gat_lr,0.6985349263636726
+citeseer_gat_mutation,0.7410300208465346
+citeseer_gat_fusion,0.7179763861721049
+citeseer_gat_margin,0.6813219947776523
+citeseer_gat_deepGini,0.6380401808536366
+citeseer_gat_leastConfidence,0.6753129276065056
+citeseer_gat_random,0.5189118782390953
+citeseer_gat_fusion_weight,0.7180069978235116
+citeseer_gat_fusion_stacking,0.6962451748384471
+citeseer_gat_fusion_voting,0.6967839399032061

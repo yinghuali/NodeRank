@@ -1,0 +1,13 @@
+lastfm_gcn_xgb,0.8227312460267006
+lastfm_gcn_lgb,0.8251470120788302
+lastfm_gcn_rf,0.8301064121828585
+lastfm_gcn_lr,0.8091613448534936
+lastfm_gcn_mutation,0.77111664162284
+lastfm_gcn_fusion,0.8301418106686702
+lastfm_gcn_margin,0.7501780760561751
+lastfm_gcn_deepGini,0.6917236172917991
+lastfm_gcn_leastConfidence,0.7374187279662486
+lastfm_gcn_random,0.5043644888169682
+lastfm_gcn_fusion_weight,0.8301974368606599
+lastfm_gcn_fusion_stacking,0.8169092787377912
+lastfm_gcn_fusion_voting,0.8091490637461711
