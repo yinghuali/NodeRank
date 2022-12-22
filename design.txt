@@ -1,8 +1,7 @@
 1. Effectiveness in clean data
 2. Effectiveness in attack data
 3. influence of different model combination
-4. influence of different feature combination
-5. mutation rule contribution
+4. mutation rule contribution
 
 
 ls -lh
