@@ -33,7 +33,7 @@ scp -r iris-cluster:/home/users/yili/pycharm/GNNEST/mutation/mutation_models/las
 scp -r iris-cluster:/home/users/yili/pycharm/GNNEST/mutation/mutation_models/lastfm_graphsage /Users/yinghua.li/Documents/Pycharm/GNNEST/mutation/mutation_models
 
 scp -r iris-cluster:/mnt/irisgpfs/users/yili/pycharm/NodeRank/res/apfd_citeseer_graphsage.csv /Users/yinghua.li/Documents/Pycharm/NodeRank/res/
-scp -r iris-cluster:/mnt/irisgpfs/users/yili/pycharm/NodeRank/res/pfd_citeseer_graphsage.csv /Users/yinghua.li/Documents/Pycharm/NodeRank/res/
+scp -r iris-cluster:/home/users/yili/pycharm/NodeRank/res/features /Users/yinghua.li/Documents/Pycharm/NodeRank/res
 
 
 # 本地上传

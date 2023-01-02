@@ -143,7 +143,7 @@ def main():
 
     margin_rank_idx = Margin_rank_idx(x_test_target_model_pre)
     deepGini_rank_idx = DeepGini_rank_idx(x_test_target_model_pre)
-    leastConfidence_rank_idx = LeastConfidence_rank_idx(x_test_target_model_pre)
+    leastConfidence_rank_idx = MaximumProbability_rank_idx(x_test_target_model_pre)
     random_rank_idx = Random_rank_idx(x_test_target_model_pre)
 
     fusion_ratio_list = get_res_ratio_list(idx_miss_list, fusion_rank_idx, select_ratio_list)
@@ -255,9 +255,7 @@ def main():
     df.to_csv(path_result_apfd, mode='a', header=False, index=False)
 
 
-
 if __name__ == '__main__':
     main()
-
 
 

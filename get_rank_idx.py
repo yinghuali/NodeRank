@@ -27,7 +27,13 @@ def DeepGini_rank_idx(x):
     return gini_rank_idx
 
 
-def LeastConfidence_rank_idx(x):
+# def LeastConfidence_rank_idx(x):
+#     max_pre = x.max(1)
+#     leastConfidence_rank_idx = np.argsort(max_pre)
+#     return leastConfidence_rank_idx
+
+
+def MaximumProbability_rank_idx(x):
     max_pre = x.max(1)
     leastConfidence_rank_idx = np.argsort(max_pre)
     return leastConfidence_rank_idx
