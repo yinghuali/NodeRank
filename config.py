@@ -36,3 +36,15 @@ dic_mutation_tagcn = {
 }
 
 
+# hidden_channel
+# epochs
+# normalize
+# add_self_loops
+# bias
+# cached
+# improved
+# heads
+# concat
+# negative_slope
+
+
