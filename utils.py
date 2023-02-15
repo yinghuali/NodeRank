@@ -106,7 +106,7 @@ def load_data(path_x_np, path_edge_index, path_y):
     edge_index = torch.from_numpy(edge_index)
     y = torch.from_numpy(y)
 
-    return num_node_features, num_classes, x, edge_index, y, test_y, train_idx, test_idx
+    return num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx
 
 
 def get_mutation_model_features(num_node_features, target_hidden_channel, num_classes, target_model_path, x, y, edge_index, model_list, model_name):
