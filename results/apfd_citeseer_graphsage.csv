@@ -1,0 +1,9 @@
+citeseer_graphsage_fusion,0.7389517896274653
+citeseer_graphsage_deepGini,0.6119666964261559
+citeseer_graphsage_vanillasm,0.6659395882368856
+citeseer_graphsage_pcs,0.6821145469794119
+citeseer_graphsage_entropy,0.6092037983929877
+citeseer_graphsage_random,0.4960737764791819
+citeseer_graphsage_fusion_weight,0.7389551713876039
+citeseer_graphsage_fusion_stacking,0.6915564212861511
+citeseer_graphsage_fusion_voting,0.6829430782133485

@@ -1,0 +1,9 @@
+cora_tagcn_fusion,0.8139718215363971
+cora_tagcn_deepGini,0.6932237504193224
+cora_tagcn_vanillasm,0.7413843229341385
+cora_tagcn_pcs,0.7345409817734542
+cora_tagcn_entropy,0.6759085318125909
+cora_tagcn_random,0.4733478698423348
+cora_tagcn_fusion_weight,0.8139718215363971
+cora_tagcn_fusion_stacking,0.7837582466733758
+cora_tagcn_fusion_voting,0.7816672257631667
