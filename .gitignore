@@ -133,3 +133,5 @@ dmypy.json
 mutation_models/
 data/
 test/
+Results.ipynb
+tables/*
