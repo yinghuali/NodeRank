@@ -135,3 +135,7 @@ data/
 test/
 Results.ipynb
 tables/*
+ResultAnalysis.ipynb
+Results.ipynb
+featureresult/*
+

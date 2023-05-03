@@ -49,9 +49,8 @@ path_mutation_x_np_list = args.path_mutation_x_np_list
 # path_mutation_x_np_list = './data/citeseer/mutation_x_np_list.pkl'
 
 target_hidden_channel = 16
-path_result_pfd = 'res/features/pfd' + '_' + subject_name + '.csv'
-path_result_apfd = 'res/features/apfd' + '_' + subject_name + '.csv'
-num_node_features, num_classes, x, edge_index, y, test_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
+path_result_apfd = 'featureresult/apfd' + '_' + subject_name + '.csv'
+num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
 path_model_list = get_model_path(path_model_file)
 path_model_list = sorted(path_model_list)
 path_config_list = [i.replace('.pt', '.pkl') for i in path_model_list]
