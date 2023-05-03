@@ -179,7 +179,9 @@ def main():
     df = pd.DataFrame(columns=None, data=res_list)
     df.to_csv(path_result_apfd, mode='a', header=False, index=False)
 
-main()
+
+if __name__ == '__main__':
+    main()
 
 
 
