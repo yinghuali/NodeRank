@@ -1,4 +1,4 @@
-from gat import GAT
+from gat import Target_GAT
 import pickle
 import pickle
 import numpy as np
@@ -51,7 +51,7 @@ print(len(test_idx))
 def train(x, edge_index, y):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = GAT(num_node_features, 16, num_classes).to(device)
+    model = Target_GAT(num_node_features, 16, num_classes).to(device)
     x = x.to(device)
     edge_index = edge_index.to(device)
     y = y.to(device)

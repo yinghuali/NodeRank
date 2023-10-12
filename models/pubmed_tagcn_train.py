@@ -1,4 +1,4 @@
-from tagcn import TAGCN
+from tagcn import Target_TAGCN
 import pickle
 import pickle
 import numpy as np
@@ -43,7 +43,7 @@ test_y = torch.from_numpy(test_y)
 def train(x, edge_index, y):
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = TAGCN(num_node_features, 16, num_classes).to(device)
+    model = Target_TAGCN(num_node_features, 16, num_classes).to(device)
     x = x.to(device)
     edge_index = edge_index.to(device)
     y = y.to(device)
