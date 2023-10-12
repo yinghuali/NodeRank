@@ -3,6 +3,7 @@ import torch
 import numpy as np
 import pickle
 import torch
+from scipy.stats import ttest_ind
 from sklearn.model_selection import train_test_split
 from models.gcn import GCN, Target_GCN
 from models.gat import GAT, Target_GAT
@@ -246,3 +247,16 @@ def get_mutation_nodel_attribute_features(num_node_features, target_hidden_chann
     label_np = np.array(label_list)
 
     return feature_np, label_np
+
+
+def effect_size(x1, x2):
+    mean1, mean2 = np.mean(x1), np.mean(x2)
+    std1, std2 = np.std(x1, ddof=1), np.std(x2, ddof=1)
+    pooled_std = np.sqrt(((len(x1)-1)*std1**2 + (len(x2)-1)*std2**2)/(len(x1)+len(x2)-2))
+    return abs(mean1-mean2) / pooled_std
+
+
+def p_value(x1, x2):
+    t, p = ttest_ind(x1, x2)
+    return p
+
