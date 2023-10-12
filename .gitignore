@@ -141,6 +141,7 @@ featureresult/*
 test.py
 test_model_acc.py
 README.txt
+*.ipynb
 
 
 
