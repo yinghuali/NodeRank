@@ -136,7 +136,6 @@ test/
 Results.ipynb
 tables/*
 ResultAnalysis.ipynb
-Results.ipynb
 featureresult/*
 test.py
 test_model_acc.py
