@@ -136,6 +136,37 @@ def get_mutation_model_features(num_node_features, target_hidden_channel, num_cl
     return feature_np, label_np
 
 
+def get_repeat_mutation_model_features(num_node_features, target_hidden_channel, num_classes, target_model_name, x, y, edge_index, repeat_mutation_model_path, model_name):
+    """
+    repeat_mutation_model_path: ./new_mutation_models/
+    """
+    repeat_file_name_list = ['repeat_'+str(i) for i in range(1, 21)]
+
+    target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
+    mutation_pre_idx_np = np.array([model(x, edge_index).argmax(dim=1).numpy() for model in model_list]).T
+    feature_list = []
+    for i in range(len(target_pre)):
+        tmp_list = []
+        for j in range(len(mutation_pre_idx_np[i])):
+            if mutation_pre_idx_np[i][j] != target_pre[i]:
+                tmp_list.append(1)
+            else:
+                tmp_list.append(0)
+        feature_list.append(tmp_list)
+    feature_np = np.array(feature_list)
+
+    label_list = []
+    for i in range(len(target_pre)):
+        if target_pre[i] != y[i]:
+            label_list.append(1)
+        else:
+            label_list.append(0)
+    label_np = np.array(label_list)
+
+    return feature_np, label_np
+
+
 def apfd(error_idx_list, pri_idx_list):
     error_idx_list = list(error_idx_list)
     pri_idx_list = list(pri_idx_list)
