@@ -136,11 +136,58 @@ def get_mutation_model_features(num_node_features, target_hidden_channel, num_cl
     return feature_np, label_np
 
 
-def get_repeat_mutation_model_features(num_node_features, target_hidden_channel, num_classes, target_model_name, x, y, edge_index, repeat_mutation_model_path, model_name):
+def get_repeat_mutation_model_features(num_node_features, target_hidden_channel, num_classes, target_model_name, x, y, edge_index, repeat_path_mutation_model, model_name):
     """
+    exampel:
     repeat_mutation_model_path: ./new_mutation_models/
+    target_model_name: citeseer_gcn
     """
-    repeat_file_name_list = ['repeat_'+str(i) for i in range(1, 21)]
+    repeat_path_target_model_list = ['./repeat_target_models/'+'repeat_'+str(i)+'/'+target_model_name+'.pt' for i in range(1, 21)] # 路径如下
+    # ['./repeat_target_models/repeat_1/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_2/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_3/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_4/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_5/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_6/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_7/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_8/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_9/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_10/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_11/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_12/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_13/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_14/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_15/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_16/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_17/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_18/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_19/citeseer_gcn.pt',
+    #  './repeat_target_models/repeat_20/citeseer_gcn.pt']
+
+    repeat_path_mutation_model_list = ['./new_mutation_models/'+'repeat_'+str(i)+'/'+target_model_name+'/' for i in range(1, 21)]
+
+    # ['./new_mutation_models/repeat_1/citeseer_gcn/',
+    #  './new_mutation_models/repeat_2/citeseer_gcn/',
+    #  './new_mutation_models/repeat_3/citeseer_gcn/',
+    #  './new_mutation_models/repeat_4/citeseer_gcn/',
+    #  './new_mutation_models/repeat_5/citeseer_gcn/',
+    #  './new_mutation_models/repeat_6/citeseer_gcn/',
+    #  './new_mutation_models/repeat_7/citeseer_gcn/',
+    #  './new_mutation_models/repeat_8/citeseer_gcn/',
+    #  './new_mutation_models/repeat_9/citeseer_gcn/',
+    #  './new_mutation_models/repeat_10/citeseer_gcn/',
+    #  './new_mutation_models/repeat_11/citeseer_gcn/',
+    #  './new_mutation_models/repeat_12/citeseer_gcn/',
+    #  './new_mutation_models/repeat_13/citeseer_gcn/',
+    #  './new_mutation_models/repeat_14/citeseer_gcn/',
+    #  './new_mutation_models/repeat_15/citeseer_gcn/',
+    #  './new_mutation_models/repeat_16/citeseer_gcn/',
+    #  './new_mutation_models/repeat_17/citeseer_gcn/',
+    #  './new_mutation_models/repeat_18/citeseer_gcn/',
+    #  './new_mutation_models/repeat_19/citeseer_gcn/',
+    #  './new_mutation_models/repeat_20/citeseer_gcn/']
+
+
 
     target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
     target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
