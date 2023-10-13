@@ -11,71 +11,151 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 
-import argparse
-ap = argparse.ArgumentParser()
-ap.add_argument("--path_model_file", type=str)
-ap.add_argument("--model_name", type=str)
-ap.add_argument("--target_model_path", type=str)
-ap.add_argument("--path_x_np", type=str)
-ap.add_argument("--path_edge_index", type=str)
-ap.add_argument("--path_y", type=str)
-ap.add_argument("--subject_name", type=str)
-ap.add_argument("--path_mutation_edge_index_np_list", type=str)
-ap.add_argument("--path_mutation_x_np_list", type=str)
-args = ap.parse_args()
-
-# python main.py --path_model_file './mutation_models/cora_gcn' --model_name 'gcn' --target_model_path './target_models/cora_gcn.pt' --path_x_np './data/cora/x_np.pkl' --path_edge_index './data/cora/edge_index_np.pkl' --path_y './data/cora/y_np.pkl' --subject_name 'cora_gcn' --path_mutation_edge_index_np_list './data/cora/mutation_edge_index_np_list.pkl' --path_mutation_x_np_list './data/cora/mutation_x_np_list.pkl'
-
-path_model_file = args.path_model_file
-model_name = args.model_name
-target_model_path = args.target_model_path
-path_x_np = args.path_x_np
-path_edge_index = args.path_edge_index
-path_y = args.path_y
-subject_name = args.subject_name
-path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
-path_mutation_x_np_list = args.path_mutation_x_np_list
+# import argparse
+# ap = argparse.ArgumentParser()
+# ap.add_argument("--path_model_file", type=str)
+# ap.add_argument("--model_name", type=str)
+# ap.add_argument("--target_model_path", type=str)
+# ap.add_argument("--path_x_np", type=str)
+# ap.add_argument("--path_edge_index", type=str)
+# ap.add_argument("--path_y", type=str)
+# ap.add_argument("--subject_name", type=str)
+# ap.add_argument("--path_mutation_edge_index_np_list", type=str)
+# ap.add_argument("--path_mutation_x_np_list", type=str)
+# args = ap.parse_args()
+#
+# path_model_file = args.path_model_file
+# model_name = args.model_name
+# target_model_path = args.target_model_path
+# path_x_np = args.path_x_np
+# path_edge_index = args.path_edge_index
+# path_y = args.path_y
+# subject_name = args.subject_name
+# path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
+# path_mutation_x_np_list = args.path_mutation_x_np_list
 
 
-# path_model_file = './mutation_models/cora_gcn'
 # model_name = 'gcn'
+# subject_name = 'cora_gcn'
 # target_model_path = './target_models/cora_gcn.pt'
+# path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
+# path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
+#
 # path_x_np = './data/cora/x_np.pkl'
 # path_edge_index = './data/cora/edge_index_np.pkl'
 # path_y = './data/cora/y_np.pkl'
-# subject_name = 'cora_gcn'
-# path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
-# path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
+#
+# target_hidden_channel = 16
+# path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
+# path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
 
+
+model_name = 'gcn'
+subject_name = 'cora_gcn'
+target_model_path = './target_models/cora_gcn.pt'
+path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
+path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
+
+path_x_np = './data/cora/x_np.pkl'
+path_edge_index = './data/cora/edge_index_np.pkl'
+path_y = './data/cora/y_np.pkl'
 
 target_hidden_channel = 16
 path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
 path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
 
+
+
 num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
-path_model_list = get_model_path(path_model_file)
-path_model_list = sorted(path_model_list)
-path_config_list = [i.replace('.pt', '.pkl') for i in path_model_list]
-hidden_channel_list = [int(i.split('/')[-1].split('_')[2]) for i in path_config_list]
-dic_list = [pickle.load(open(i, 'rb')) for i in path_config_list]
+
+x_train = x[train_idx]
+y_train = y[train_idx]
+
+x_test = x[test_idx]
+y_test = y[test_idx]
 
 
-model_list = []
-for i in range(len(path_model_list)):
-    try:
-        tmp_model = load_model(model_name, path_model_list[i], hidden_channel_list[i], num_node_features, num_classes, dic_list[i])
-        model_list.append(tmp_model)
-    except:
-        print(dic_list[i])
+def get_repeat_mutation_model_features(subject_name):
+    repeat_path_target_model_list = ['./repeat_target_models/'+'repeat_'+str(i)+'/'+subject_name+'.pt' for i in range(1, 21)]
+    # ['./repeat_target_models/repeat_1/cora_gcn.pt', './repeat_target_models/repeat_2/cora_gcn.pt', './repeat_target_models/repeat_3/cora_gcn.pt', './repeat_target_models/repeat_4/cora_gcn.pt', './repeat_target_models/repeat_5/cora_gcn.pt', './repeat_target_models/repeat_6/cora_gcn.pt', './repeat_target_models/repeat_7/cora_gcn.pt', './repeat_target_models/repeat_8/cora_gcn.pt', './repeat_target_models/repeat_9/cora_gcn.pt', './repeat_target_models/repeat_10/cora_gcn.pt', './repeat_target_models/repeat_11/cora_gcn.pt', './repeat_target_models/repeat_12/cora_gcn.pt', './repeat_target_models/repeat_13/cora_gcn.pt', './repeat_target_models/repeat_14/cora_gcn.pt', './repeat_target_models/repeat_15/cora_gcn.pt', './repeat_target_models/repeat_16/cora_gcn.pt', './repeat_target_models/repeat_17/cora_gcn.pt', './repeat_target_models/repeat_18/cora_gcn.pt', './repeat_target_models/repeat_19/cora_gcn.pt', './repeat_target_models/repeat_20/cora_gcn.pt']
 
-print('number of models:', len(path_model_list))
-print('number of models loaded:', len(model_list))
+    repeat_path_mutation_model_list = ['./new_mutation_models/' + 'repeat_' + str(i) + '/' + subject_name + '/' for i in range(1, 21)]
+    # ['./new_mutation_models/repeat_1/cora_gcn/', './new_mutation_models/repeat_2/cora_gcn/', './new_mutation_models/repeat_3/cora_gcn/', './new_mutation_models/repeat_4/cora_gcn/', './new_mutation_models/repeat_5/cora_gcn/', './new_mutation_models/repeat_6/cora_gcn/', './new_mutation_models/repeat_7/cora_gcn/', './new_mutation_models/repeat_8/cora_gcn/', './new_mutation_models/repeat_9/cora_gcn/', './new_mutation_models/repeat_10/cora_gcn/', './new_mutation_models/repeat_11/cora_gcn/', './new_mutation_models/repeat_12/cora_gcn/', './new_mutation_models/repeat_13/cora_gcn/', './new_mutation_models/repeat_14/cora_gcn/', './new_mutation_models/repeat_15/cora_gcn/', './new_mutation_models/repeat_16/cora_gcn/', './new_mutation_models/repeat_17/cora_gcn/', './new_mutation_models/repeat_18/cora_gcn/', './new_mutation_models/repeat_19/cora_gcn/', './new_mutation_models/repeat_20/cora_gcn/']
 
-target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    repeat_target_model_list = []
+    for model_path in repeat_path_target_model_list:
+        target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, model_path)
+        repeat_target_model_list.append(target_model)
 
+    repeat_mutation_model_list = []
+    for path_mutation_model in repeat_path_mutation_model_list:
+        mutation_model_list = []
+        path_model_list = get_model_path(path_mutation_model)
+        path_model_list = sorted(path_model_list)
+        path_config_list = [i.replace('.pt', '.pkl') for i in path_model_list]
+        hidden_channel_list = [int(i.split('/')[-1].split('_')[2]) for i in path_config_list]
+        dic_list = [pickle.load(open(i, 'rb')) for i in path_config_list]
+
+        for i in range(len(path_model_list)):
+            try:
+                tmp_model = load_model(model_name, path_model_list[i], hidden_channel_list[i], num_node_features, num_classes, dic_list[i])
+                mutation_model_list.append(tmp_model)
+            except:
+                print(dic_list[i])
+        repeat_mutation_model_list.append(mutation_model_list)
+
+    repeat_target_pre_list = []
+    repeat_mutation_pre_idx_np_list = []
+    for i in range(len(repeat_path_target_model_list)):
+        target_model = repeat_target_model_list[i]
+        model_list = repeat_mutation_model_list[i]
+        target_model.eval()
+
+        target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
+        mutation_pre_idx_np = np.array([model(x, edge_index).argmax(dim=1).numpy() for model in model_list]).T
+        repeat_target_pre_list.append(target_pre)
+        repeat_mutation_pre_idx_np_list.append(mutation_pre_idx_np)
+
+    mutation_model_feaure = []
+    for i in range(len(x)):
+        tmp_feaure = []
+        repeat_target_pre = [repeat_target_pre_list[r][i] for r in range(20)]
+        repaet_mutation_pre_idx_np = [repeat_mutation_pre_idx_np_list[r][i] for r in range(20)]
+
+        n_mutants = len(repaet_mutation_pre_idx_np[0])
+        for j in range(n_mutants):
+            repeat_mutants_pre = [repaet_mutation_pre_idx_np[r][j] for r in range(20)]
+            if str(repeat_target_pre) == str(repeat_mutants_pre):
+                tmp_feaure.append(0)
+            elif len(set(repeat_target_pre)) == 1 and len(set(repeat_mutants_pre)) == 1:
+                tmp_feaure.append(1)
+            else:
+                es = effect_size(repeat_target_pre, repeat_mutants_pre)
+                pvalue = p_value(repeat_target_pre, repeat_mutants_pre)
+
+                if es >= 0.2 and pvalue < 0.05:
+                    tmp_feaure.append(1)
+                else:
+                    tmp_feaure.append(0)
+
+        mutation_model_feaure.append(tmp_feaure)
+    feature_np = np.array(mutation_model_feaure)
+
+    target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    target_model.eval()
+    target_pre = target_model(x, edge_index).argmax(dim=1).numpy()
+
+    label_list = []
+    for i in range(len(target_pre)):
+        if target_pre[i] != y[i]:
+            label_list.append(1)
+        else:
+            label_list.append(0)
+    label_np = np.array(label_list)
+    return feature_np, label_np
 
 # mutant model feature
-feature_model_np, label_model_np = get_mutation_model_features(num_node_features, target_hidden_channel, num_classes, target_model_path, x, y, edge_index, model_list, model_name)
+feature_model_np, label_model_np = get_repeat_mutation_model_features(subject_name)
 
 # mutant node edge feature
 mutation_edge_index_list = pickle.load(open(path_mutation_edge_index_np_list, 'rb'))
@@ -95,7 +175,8 @@ y_test = label_np[test_idx]
 
 
 def main():
-
+    target_model = load_target_model(model_name, num_node_features, target_hidden_channel, num_classes, target_model_path)
+    target_model.eval()
     # XGB
     model = XGBClassifier()
     model.fit(x_train, y_train)
