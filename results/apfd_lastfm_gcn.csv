@@ -1,0 +1,9 @@
+lastfm_gcn_fusion,0.815065820473554
+lastfm_gcn_deepGini,0.6991397289540475
+lastfm_gcn_vanillasm,0.7437255030574326
+lastfm_gcn_pcs,0.7453519394082181
+lastfm_gcn_entropy,0.6410692580772979
+lastfm_gcn_random,0.49809613242806194
+lastfm_gcn_fusion_weight,0.815065820473554
+lastfm_gcn_fusion_stacking,0.798960754023924
+lastfm_gcn_fusion_voting,0.7967131930091348

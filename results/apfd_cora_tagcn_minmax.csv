@@ -1,0 +1,9 @@
+cora_tagcn_minmax_fusion,0.7954251811425678
+cora_tagcn_minmax_deepGini,0.7651968536492088
+cora_tagcn_minmax_vanillasm,0.766829979224162
+cora_tagcn_minmax_pcs,0.7332475425594592
+cora_tagcn_minmax_entropy,0.7579873277724374
+cora_tagcn_minmax_random,0.4831209236462113
+cora_tagcn_minmax_fusion_weight,0.7954251811425678
+cora_tagcn_minmax_fusion_stacking,0.7855644102659514
+cora_tagcn_minmax_fusion_voting,0.7858900017571604
