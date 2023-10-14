@@ -1,0 +1,9 @@
+pubmed_tagcn_fusion,0.7795236248657678
+pubmed_tagcn_deepGini,0.6140488903472139
+pubmed_tagcn_vanillasm,0.6582525730598753
+pubmed_tagcn_pcs,0.6658448397389156
+pubmed_tagcn_entropy,0.6155342827913225
+pubmed_tagcn_random,0.495470492118416
+pubmed_tagcn_fusion_weight,0.779720830184677
+pubmed_tagcn_fusion_stacking,0.7409690183262847
+pubmed_tagcn_fusion_voting,0.7240962251477107

@@ -1,0 +1,9 @@
+pubmed_graphsage_fusion,0.7897168455374837
+pubmed_graphsage_deepGini,0.6951982502257248
+pubmed_graphsage_vanillasm,0.6981057868106637
+pubmed_graphsage_pcs,0.6660151283609663
+pubmed_graphsage_entropy,0.6967867656437974
+pubmed_graphsage_random,0.5016037304840726
+pubmed_graphsage_fusion_weight,0.7898422135128127
+pubmed_graphsage_fusion_stacking,0.7661794510737667
+pubmed_graphsage_fusion_voting,0.766999814084399

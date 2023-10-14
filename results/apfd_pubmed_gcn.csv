@@ -1,0 +1,9 @@
+pubmed_gcn_fusion,0.7677727297989639
+pubmed_gcn_deepGini,0.6995145433275471
+pubmed_gcn_vanillasm,0.7195502116195913
+pubmed_gcn_pcs,0.6737870700821758
+pubmed_gcn_entropy,0.700363118624604
+pubmed_gcn_random,0.5041303155932935
+pubmed_gcn_fusion_weight,0.7675597122532738
+pubmed_gcn_fusion_stacking,0.7501058268439272
+pubmed_gcn_fusion_voting,0.752099957481732

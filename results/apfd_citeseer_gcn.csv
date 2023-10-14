@@ -1,0 +1,9 @@
+citeseer_gcn_fusion,0.7179158324991659
+citeseer_gcn_deepGini,0.6153340840840842
+citeseer_gcn_vanillasm,0.6405398454009565
+citeseer_gcn_pcs,0.6569625180736292
+citeseer_gcn_entropy,0.6142739962184407
+citeseer_gcn_random,0.5221923312201091
+citeseer_gcn_fusion_weight,0.7179158324991659
+citeseer_gcn_fusion_stacking,0.651731592703815
+citeseer_gcn_fusion_voting,0.6778931709487266
