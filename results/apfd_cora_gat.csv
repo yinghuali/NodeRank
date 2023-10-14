@@ -1,9 +1,0 @@
-cora_gat_fusion,0.8247809040590406
-cora_gat_deepGini,0.7476040385403854
-cora_gat_vanillasm,0.7516143911439114
-cora_gat_pcs,0.7265144526445264
-cora_gat_entropy,0.7427736777367774
-cora_gat_random,0.5040744157441575
-cora_gat_fusion_weight,0.8247809040590406
-cora_gat_fusion_stacking,0.7840239339893399
-cora_gat_fusion_voting,0.7948185731857319

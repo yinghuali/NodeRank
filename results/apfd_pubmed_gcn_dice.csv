@@ -1,9 +1,0 @@
-pubmed_gcn_dice_fusion,0.7464909855917021
-pubmed_gcn_dice_deepGini,0.6725792731048408
-pubmed_gcn_dice_vanillasm,0.6875246922511125
-pubmed_gcn_dice_pcs,0.6378834864292825
-pubmed_gcn_dice_entropy,0.6730716809063306
-pubmed_gcn_dice_random,0.49024426524963083
-pubmed_gcn_dice_fusion_weight,0.7465531853123704
-pubmed_gcn_dice_fusion_stacking,0.7213157484582613
-pubmed_gcn_dice_fusion_voting,0.7260981005371053

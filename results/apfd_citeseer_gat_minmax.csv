@@ -1,9 +1,0 @@
-citeseer_gat_minmax_fusion,0.7111734375885319
-citeseer_gat_minmax_deepGini,0.657278032749731
-citeseer_gat_minmax_vanillasm,0.6757531116021682
-citeseer_gat_minmax_pcs,0.6754433678961982
-citeseer_gat_minmax_entropy,0.6483521257106164
-citeseer_gat_minmax_random,0.5198349292688915
-citeseer_gat_minmax_fusion_weight,0.7111809923130679
-citeseer_gat_minmax_fusion_stacking,0.6577879766559012
-citeseer_gat_minmax_fusion_voting,0.6704119213553177

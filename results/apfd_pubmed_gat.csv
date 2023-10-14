@@ -1,9 +1,0 @@
-pubmed_gat_fusion,0.7709049434280252
-pubmed_gat_deepGini,0.6371340599259918
-pubmed_gat_vanillasm,0.6629812448165948
-pubmed_gat_pcs,0.6568969888787857
-pubmed_gat_entropy,0.6402106918867427
-pubmed_gat_random,0.5059569606677392
-pubmed_gat_fusion_weight,0.770742675786129
-pubmed_gat_fusion_stacking,0.7326856574972438
-pubmed_gat_fusion_voting,0.744734888604669

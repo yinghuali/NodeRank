@@ -1,9 +1,0 @@
-cora_gcn_pgdattack_fusion,0.8037180157209297
-cora_gcn_pgdattack_deepGini,0.7318071678570862
-cora_gcn_pgdattack_vanillasm,0.74808239498704
-cora_gcn_pgdattack_pcs,0.7396570746823349
-cora_gcn_pgdattack_entropy,0.7286028010494697
-cora_gcn_pgdattack_random,0.4981787371521784
-cora_gcn_pgdattack_fusion_weight,0.8037127366981824
-cora_gcn_pgdattack_fusion_stacking,0.7792127921279213
-cora_gcn_pgdattack_fusion_voting,0.7841909105786337

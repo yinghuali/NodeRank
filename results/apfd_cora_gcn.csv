@@ -1,9 +1,0 @@
-cora_gcn_fusion,0.8162540435977047
-cora_gcn_deepGini,0.7297738836419201
-cora_gcn_vanillasm,0.7458453218893423
-cora_gcn_pcs,0.7383189470661226
-cora_gcn_entropy,0.7260513354032219
-cora_gcn_random,0.4924736251767804
-cora_gcn_fusion_weight,0.816394926063798
-cora_gcn_fusion_stacking,0.7855633402148999
-cora_gcn_fusion_voting,0.7933714799703063
