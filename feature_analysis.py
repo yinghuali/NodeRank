@@ -37,17 +37,6 @@ subject_name = args.subject_name
 path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
 path_mutation_x_np_list = args.path_mutation_x_np_list
 
-
-# path_model_file = './mutation_models/citeseer_gcn'
-# model_name = 'gcn'
-# target_model_path = './target_models/citeseer_gcn.pt'
-# path_x_np = './data/citeseer/x_np.pkl'
-# path_edge_index = './data/citeseer/edge_index_np.pkl'
-# path_y = './data/citeseer/y_np.pkl'
-# subject_name = 'citeseer_gcn'
-# path_mutation_edge_index_np_list = './data/citeseer/mutation_edge_index_np_list.pkl'
-# path_mutation_x_np_list = './data/citeseer/mutation_x_np_list.pkl'
-
 target_hidden_channel = 16
 path_result_apfd = 'featureresult/apfd' + '_' + subject_name + '.csv'
 num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
