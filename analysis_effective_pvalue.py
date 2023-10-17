@@ -24,16 +24,26 @@ ap.add_argument("--path_mutation_edge_index_np_list", type=str)
 ap.add_argument("--path_mutation_x_np_list", type=str)
 args = ap.parse_args()
 
+effectSize = args.effectSize
+model_name = args.model_name
+subject_name = args.subject_name
+target_model_path = args.target_model_path
+path_x_np = args.path_x_np
+path_edge_index = args.path_edge_index
+path_y = args.path_y
+path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
+path_mutation_x_np_list = args.path_mutation_x_np_list
 
-effectSize = 0.5
-model_name = 'gat'
-subject_name = 'cora_gat'
-target_model_path = './target_models/cora_gat.pt'
-path_x_np = './data/cora/x_np.pkl'
-path_edge_index = './data/cora/edge_index_np.pkl'
-path_y = './data/cora/y_np.pkl'
-path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
-path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
+
+# effectSize = 0.5
+# model_name = 'gat'
+# subject_name = 'cora_gat'
+# target_model_path = './target_models/cora_gat.pt'
+# path_x_np = './data/cora/x_np.pkl'
+# path_edge_index = './data/cora/edge_index_np.pkl'
+# path_y = './data/cora/y_np.pkl'
+# path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
+# path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
 
 target_hidden_channel = 16
 
