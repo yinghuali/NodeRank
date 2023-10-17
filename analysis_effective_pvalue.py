@@ -63,10 +63,16 @@ def write_result(content, file_name):
 
 
 def get_repeat_mutation_model_features(subject_name):
-    repeat_path_target_model_list = ['./repeat_target_models/'+'repeat_'+str(i)+'/'+subject_name+'.pt' for i in range(1, 21)]
+    filtration_str = ['_dice', '_minmax', '_nodeembeddingattack_add', '_nodeembeddingattack_remove', '_pgdattack',
+                      '_randomattack_add', '_randomattack_flip', '_randomattack_remove']
+    new_subject_name = subject_name
+
+    for i in filtration_str:
+        new_subject_name = new_subject_name.replace(i, '')
+    repeat_path_target_model_list = ['./repeat_target_models/'+'repeat_'+str(i)+'/'+new_subject_name+'.pt' for i in range(1, 21)]
     # ['./repeat_target_models/repeat_1/cora_gcn.pt', './repeat_target_models/repeat_2/cora_gcn.pt', './repeat_target_models/repeat_3/cora_gcn.pt', './repeat_target_models/repeat_4/cora_gcn.pt', './repeat_target_models/repeat_5/cora_gcn.pt', './repeat_target_models/repeat_6/cora_gcn.pt', './repeat_target_models/repeat_7/cora_gcn.pt', './repeat_target_models/repeat_8/cora_gcn.pt', './repeat_target_models/repeat_9/cora_gcn.pt', './repeat_target_models/repeat_10/cora_gcn.pt', './repeat_target_models/repeat_11/cora_gcn.pt', './repeat_target_models/repeat_12/cora_gcn.pt', './repeat_target_models/repeat_13/cora_gcn.pt', './repeat_target_models/repeat_14/cora_gcn.pt', './repeat_target_models/repeat_15/cora_gcn.pt', './repeat_target_models/repeat_16/cora_gcn.pt', './repeat_target_models/repeat_17/cora_gcn.pt', './repeat_target_models/repeat_18/cora_gcn.pt', './repeat_target_models/repeat_19/cora_gcn.pt', './repeat_target_models/repeat_20/cora_gcn.pt']
 
-    repeat_path_mutation_model_list = ['./new_mutation_models/' + 'repeat_' + str(i) + '/' + subject_name + '/' for i in range(1, 21)]
+    repeat_path_mutation_model_list = ['./new_mutation_models/' + 'repeat_' + str(i) + '/' + new_subject_name + '/' for i in range(1, 21)]
     # ['./new_mutation_gitmodels/repeat_1/cora_gcn/', './new_mutation_models/repeat_2/cora_gcn/', './new_mutation_models/repeat_3/cora_gcn/', './new_mutation_models/repeat_4/cora_gcn/', './new_mutation_models/repeat_5/cora_gcn/', './new_mutation_models/repeat_6/cora_gcn/', './new_mutation_models/repeat_7/cora_gcn/', './new_mutation_models/repeat_8/cora_gcn/', './new_mutation_models/repeat_9/cora_gcn/', './new_mutation_models/repeat_10/cora_gcn/', './new_mutation_models/repeat_11/cora_gcn/', './new_mutation_models/repeat_12/cora_gcn/', './new_mutation_models/repeat_13/cora_gcn/', './new_mutation_models/repeat_14/cora_gcn/', './new_mutation_models/repeat_15/cora_gcn/', './new_mutation_models/repeat_16/cora_gcn/', './new_mutation_models/repeat_17/cora_gcn/', './new_mutation_models/repeat_18/cora_gcn/', './new_mutation_models/repeat_19/cora_gcn/', './new_mutation_models/repeat_20/cora_gcn/']
 
     repeat_target_model_list = []
