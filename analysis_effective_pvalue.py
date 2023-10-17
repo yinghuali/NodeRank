@@ -35,24 +35,10 @@ from sklearn import metrics
 # path_mutation_x_np_list = args.path_mutation_x_np_list
 
 
-# model_name = 'gcn'
-# subject_name = 'cora_gcn'
-# target_model_path = './target_models/cora_gcn.pt'
-# path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
-# path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
-#
-# path_x_np = './data/cora/x_np.pkl'
-# path_edge_index = './data/cora/edge_index_np.pkl'
-# path_y = './data/cora/y_np.pkl'
-#
-# target_hidden_channel = 16
-# path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
-# path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
-
-
-model_name = 'gcn'
-subject_name = 'cora_gcn'
-target_model_path = './target_models/cora_gcn.pt'
+effectSize = 0.5
+model_name = 'gat'
+subject_name = 'cora_gat'
+target_model_path = './target_models/cora_gat.pt'
 path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
 path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
 
@@ -61,10 +47,6 @@ path_edge_index = './data/cora/edge_index_np.pkl'
 path_y = './data/cora/y_np.pkl'
 
 target_hidden_channel = 16
-path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
-path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
-
-
 
 num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
 
@@ -75,12 +57,18 @@ x_test = x[test_idx]
 y_test = y[test_idx]
 
 
+def write_result(content, file_name):
+    re = open(file_name, 'a')
+    re.write('\n' + content)
+    re.close()
+
+
 def get_repeat_mutation_model_features(subject_name):
     repeat_path_target_model_list = ['./repeat_target_models/'+'repeat_'+str(i)+'/'+subject_name+'.pt' for i in range(1, 21)]
     # ['./repeat_target_models/repeat_1/cora_gcn.pt', './repeat_target_models/repeat_2/cora_gcn.pt', './repeat_target_models/repeat_3/cora_gcn.pt', './repeat_target_models/repeat_4/cora_gcn.pt', './repeat_target_models/repeat_5/cora_gcn.pt', './repeat_target_models/repeat_6/cora_gcn.pt', './repeat_target_models/repeat_7/cora_gcn.pt', './repeat_target_models/repeat_8/cora_gcn.pt', './repeat_target_models/repeat_9/cora_gcn.pt', './repeat_target_models/repeat_10/cora_gcn.pt', './repeat_target_models/repeat_11/cora_gcn.pt', './repeat_target_models/repeat_12/cora_gcn.pt', './repeat_target_models/repeat_13/cora_gcn.pt', './repeat_target_models/repeat_14/cora_gcn.pt', './repeat_target_models/repeat_15/cora_gcn.pt', './repeat_target_models/repeat_16/cora_gcn.pt', './repeat_target_models/repeat_17/cora_gcn.pt', './repeat_target_models/repeat_18/cora_gcn.pt', './repeat_target_models/repeat_19/cora_gcn.pt', './repeat_target_models/repeat_20/cora_gcn.pt']
 
     repeat_path_mutation_model_list = ['./new_mutation_models/' + 'repeat_' + str(i) + '/' + subject_name + '/' for i in range(1, 21)]
-    # ['./new_mutation_models/repeat_1/cora_gcn/', './new_mutation_models/repeat_2/cora_gcn/', './new_mutation_models/repeat_3/cora_gcn/', './new_mutation_models/repeat_4/cora_gcn/', './new_mutation_models/repeat_5/cora_gcn/', './new_mutation_models/repeat_6/cora_gcn/', './new_mutation_models/repeat_7/cora_gcn/', './new_mutation_models/repeat_8/cora_gcn/', './new_mutation_models/repeat_9/cora_gcn/', './new_mutation_models/repeat_10/cora_gcn/', './new_mutation_models/repeat_11/cora_gcn/', './new_mutation_models/repeat_12/cora_gcn/', './new_mutation_models/repeat_13/cora_gcn/', './new_mutation_models/repeat_14/cora_gcn/', './new_mutation_models/repeat_15/cora_gcn/', './new_mutation_models/repeat_16/cora_gcn/', './new_mutation_models/repeat_17/cora_gcn/', './new_mutation_models/repeat_18/cora_gcn/', './new_mutation_models/repeat_19/cora_gcn/', './new_mutation_models/repeat_20/cora_gcn/']
+    # ['./new_mutation_gitmodels/repeat_1/cora_gcn/', './new_mutation_models/repeat_2/cora_gcn/', './new_mutation_models/repeat_3/cora_gcn/', './new_mutation_models/repeat_4/cora_gcn/', './new_mutation_models/repeat_5/cora_gcn/', './new_mutation_models/repeat_6/cora_gcn/', './new_mutation_models/repeat_7/cora_gcn/', './new_mutation_models/repeat_8/cora_gcn/', './new_mutation_models/repeat_9/cora_gcn/', './new_mutation_models/repeat_10/cora_gcn/', './new_mutation_models/repeat_11/cora_gcn/', './new_mutation_models/repeat_12/cora_gcn/', './new_mutation_models/repeat_13/cora_gcn/', './new_mutation_models/repeat_14/cora_gcn/', './new_mutation_models/repeat_15/cora_gcn/', './new_mutation_models/repeat_16/cora_gcn/', './new_mutation_models/repeat_17/cora_gcn/', './new_mutation_models/repeat_18/cora_gcn/', './new_mutation_models/repeat_19/cora_gcn/', './new_mutation_models/repeat_20/cora_gcn/']
 
     repeat_target_model_list = []
     for model_path in repeat_path_target_model_list:
@@ -133,7 +121,7 @@ def get_repeat_mutation_model_features(subject_name):
                 es = effect_size(repeat_target_pre, repeat_mutants_pre)
                 pvalue = p_value(repeat_target_pre, repeat_mutants_pre)
 
-                if es >= 0.2 and pvalue < 0.05:
+                if es >= effectSize and pvalue < 0.05:
                     tmp_feaure.append(1)
                 else:
                     tmp_feaure.append(0)
@@ -224,107 +212,12 @@ def main():
     target_pre_train = target_model(x, edge_index).argmax(dim=1).numpy()[train_idx]
     idx_miss_list_train = get_idx_miss_class(target_pre_train, train_y)
 
-    deepGini_rank_idx = DeepGini_rank_idx(x_test_target_model_pre)
-    random_rank_idx = Random_rank_idx(x_test_target_model_pre)
-    vanillasm_rank_idx = VanillaSoftmax_rank_idx(x_test_target_model_pre)
-    pcs_rank_idx = PCS_rank_idx(x_test_target_model_pre)
-    entropy_rank_idx = Entropy_rank_idx(x_test_target_model_pre)
+    fusion_apfd = apfd(idx_miss_list, fusion_rank_idx)
 
-    fusion_ratio_list = get_res_ratio_list(idx_miss_list, fusion_rank_idx, select_ratio_list)
-    deepGini_ratio_list = get_res_ratio_list(idx_miss_list, deepGini_rank_idx, select_ratio_list)
-    random_ratio_list = get_res_ratio_list(idx_miss_list, random_rank_idx, select_ratio_list)
-    vanillasm_ratio_list = get_res_ratio_list(idx_miss_list, vanillasm_rank_idx, select_ratio_list)
-    pcs_ratio_list = get_res_ratio_list(idx_miss_list, pcs_rank_idx, select_ratio_list)
-    entropy_ratio_list = get_res_ratio_list(idx_miss_list, entropy_rank_idx, select_ratio_list)
-
-    fusion_ratio_list.insert(0, subject_name + '_' + 'fusion')
-    deepGini_ratio_list.insert(0, subject_name+'_'+'deepGini')
-    vanillasm_ratio_list.insert(0, subject_name+'_'+'vanillasm')
-    pcs_ratio_list.insert(0, subject_name + '_' + 'pcs')
-    entropy_ratio_list.insert(0, subject_name + '_' + 'entropy')
-    random_ratio_list.insert(0, subject_name+'_'+'random')
-
-    res_list = [fusion_ratio_list, deepGini_ratio_list, vanillasm_ratio_list, pcs_ratio_list, entropy_ratio_list, random_ratio_list]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
-
-    fusion_apfd = [apfd(idx_miss_list, fusion_rank_idx)]
-    deepGini_apfd = [apfd(idx_miss_list, deepGini_rank_idx)]
-    vanillasm_apfd = [apfd(idx_miss_list, vanillasm_rank_idx)]
-    pcs_apfd = [apfd(idx_miss_list, pcs_rank_idx)]
-    entropy_apfd = [apfd(idx_miss_list, entropy_rank_idx)]
-    random_apfd = [apfd(idx_miss_list, random_rank_idx)]
-
-    fusion_apfd.insert(0, subject_name + '_' + 'fusion')
-    deepGini_apfd.insert(0, subject_name+'_'+'deepGini')
-    vanillasm_apfd.insert(0, subject_name + '_' + 'vanillasm')
-    pcs_apfd.insert(0, subject_name + '_' + 'pcs')
-    entropy_apfd.insert(0, subject_name + '_' + 'entropy')
-    random_apfd.insert(0, subject_name+'_'+'random')
-
-    res_list = [fusion_apfd, deepGini_apfd, vanillasm_apfd, pcs_apfd, entropy_apfd, random_apfd]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
-
-    # Different model fusion methods
-    y_pred_test_fusion_weight = y_pred_test_xgb*apfd(idx_miss_list_train, xgb_rank_idx_train) + y_pred_test_lr*apfd(idx_miss_list_train, lr_rank_idx_train) + \
-                                y_pred_test_rf*apfd(idx_miss_list_train, rf_rank_idx_train) + y_pred_test_lgb*apfd(idx_miss_list_train, lgb_rank_idx_train)
-
-    fusion_weight_rank_idx = y_pred_test_fusion_weight.argsort()[::-1].copy()
-    fusion_weight_ratio_list = get_res_ratio_list(idx_miss_list, fusion_weight_rank_idx, select_ratio_list)
-    fusion_weight_ratio_list.insert(0, subject_name + '_' + 'fusion_weight')
-
-    res_list = [fusion_weight_ratio_list]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
-
-    fusion_weight_apfd = [apfd(idx_miss_list, fusion_weight_rank_idx)]
-    fusion_weight_apfd.insert(0, subject_name + '_' + 'fusion_weight')
-
-    res_list = [fusion_weight_apfd]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
-
-    # Stacking
-    feature_stacking_train_pre = np.array([y_pred_train_xgb, y_pred_train_lr, y_pred_train_rf, y_pred_train_lgb]).T
-    feature_stacking_test_pre = np.array([y_pred_test_xgb, y_pred_test_lr, y_pred_test_rf, y_pred_test_lgb]).T
-    model = RandomForestClassifier()
-    model.fit(feature_stacking_train_pre, y_train)
-    y_pred_test_stacking = model.predict_proba(feature_stacking_test_pre)[:, 1]
-    stacking_rank_idx = y_pred_test_stacking.argsort()[::-1].copy()
-    fusion_stacking_ratio_list = get_res_ratio_list(idx_miss_list, stacking_rank_idx, select_ratio_list)
-    fusion_stacking_ratio_list.insert(0, subject_name + '_' + 'fusion_stacking')
-
-    res_list = [fusion_stacking_ratio_list]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
-
-    fusion_stacking_apfd = [apfd(idx_miss_list, stacking_rank_idx)]
-    fusion_stacking_apfd.insert(0, subject_name + '_' + 'fusion_stacking')
-
-    res_list = [fusion_stacking_apfd]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
-
-    # voting
-    voting_pre = xgb_pre+lr_pre+rf_pre+lgb_pre
-    voting_rank_idx = voting_pre.argsort()[::-1].copy()
-    fusion_voting_ratio_list = get_res_ratio_list(idx_miss_list, voting_rank_idx, select_ratio_list)
-    fusion_voting_ratio_list.insert(0, subject_name + '_' + 'fusion_voting')
-
-    res_list = [fusion_voting_ratio_list]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_pfd, mode='a', header=False, index=False)
-
-    fusion_voting_apfd = [apfd(idx_miss_list, voting_rank_idx)]
-    fusion_voting_apfd.insert(0, subject_name + '_' + 'fusion_voting')
-
-    res_list = [fusion_voting_apfd]
-    df = pd.DataFrame(columns=None, data=res_list)
-    df.to_csv(path_result_apfd, mode='a', header=False, index=False)
+    content = subject_name+'->'+str(effectSize)+'->'+str(fusion_apfd)
+    write_result(content, 'results_analysis_effective_pvalue.txt')
 
 
 if __name__ == '__main__':
     main()
-
 
