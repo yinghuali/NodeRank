@@ -26,10 +26,10 @@ args = ap.parse_args()
 
 effectSize = args.effectSize
 model_name = args.model_name
-subject_name = args.subject_name
 target_model_path = args.target_model_path
 path_x_np = args.path_x_np
 path_edge_index = args.path_edge_index
+subject_name = args.subject_name
 path_y = args.path_y
 path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
 path_mutation_x_np_list = args.path_mutation_x_np_list
