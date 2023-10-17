@@ -11,40 +11,29 @@ from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn import metrics
 
-# import argparse
-# ap = argparse.ArgumentParser()
-# ap.add_argument("--path_model_file", type=str)
-# ap.add_argument("--model_name", type=str)
-# ap.add_argument("--target_model_path", type=str)
-# ap.add_argument("--path_x_np", type=str)
-# ap.add_argument("--path_edge_index", type=str)
-# ap.add_argument("--path_y", type=str)
-# ap.add_argument("--subject_name", type=str)
-# ap.add_argument("--path_mutation_edge_index_np_list", type=str)
-# ap.add_argument("--path_mutation_x_np_list", type=str)
-# args = ap.parse_args()
-#
-# path_model_file = args.path_model_file
-# model_name = args.model_name
-# target_model_path = args.target_model_path
-# path_x_np = args.path_x_np
-# path_edge_index = args.path_edge_index
-# path_y = args.path_y
-# subject_name = args.subject_name
-# path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
-# path_mutation_x_np_list = args.path_mutation_x_np_list
+import argparse
+ap = argparse.ArgumentParser()
+ap.add_argument("--effectSize", type=float)
+ap.add_argument("--model_name", type=str)
+ap.add_argument("--subject_name", type=str)
+ap.add_argument("--target_model_path", type=str)
+ap.add_argument("--path_x_np", type=str)
+ap.add_argument("--path_edge_index", type=str)
+ap.add_argument("--path_y", type=str)
+ap.add_argument("--path_mutation_edge_index_np_list", type=str)
+ap.add_argument("--path_mutation_x_np_list", type=str)
+args = ap.parse_args()
 
 
 effectSize = 0.5
 model_name = 'gat'
 subject_name = 'cora_gat'
 target_model_path = './target_models/cora_gat.pt'
-path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
-path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
-
 path_x_np = './data/cora/x_np.pkl'
 path_edge_index = './data/cora/edge_index_np.pkl'
 path_y = './data/cora/y_np.pkl'
+path_mutation_edge_index_np_list = './data/cora/mutation_edge_index_np_list.pkl'
+path_mutation_x_np_list = './data/cora/mutation_x_np_list.pkl'
 
 target_hidden_channel = 16
 
