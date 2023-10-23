@@ -146,5 +146,6 @@ new_target_models/*
 feature_result/*
 *.pptx
 repeat_results/*
+parameter_results/*
 
 
