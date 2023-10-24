@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from get_rank_idx import *
 from utils import *
 import torch.utils.data as Data
-from config import *
+from parameter_config import *
 from xgboost import XGBClassifier
 from lightgbm import LGBMClassifier
 from sklearn.ensemble import RandomForestClassifier
@@ -22,6 +22,7 @@ ap.add_argument("--path_y", type=str)
 ap.add_argument("--subject_name", type=str)
 ap.add_argument("--path_mutation_edge_index_np_list", type=str)
 ap.add_argument("--path_mutation_x_np_list", type=str)
+ap.add_argument("--save_name", type=str)
 args = ap.parse_args()
 
 path_model_file = args.path_model_file
@@ -33,10 +34,11 @@ path_y = args.path_y
 subject_name = args.subject_name
 path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
 path_mutation_x_np_list = args.path_mutation_x_np_list
+save_name = args.save_name
 
 target_hidden_channel = 16
-path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
-path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
+path_result_pfd = 'parameter_results/pfd' + '_' + subject_name + '_' + save_name + '.csv'
+path_result_apfd = 'parameter_results/apfd' + '_' + subject_name + '_' + save_name + '.csv'
 
 num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
 path_model_list = get_model_path(path_model_file)
