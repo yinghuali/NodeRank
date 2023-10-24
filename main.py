@@ -35,8 +35,8 @@ path_mutation_edge_index_np_list = args.path_mutation_edge_index_np_list
 path_mutation_x_np_list = args.path_mutation_x_np_list
 
 target_hidden_channel = 16
-path_result_pfd = 'results/pfd' + '_' + subject_name + '.csv'
-path_result_apfd = 'results/apfd' + '_' + subject_name + '.csv'
+path_result_pfd = 'parameter_results/pfd' + '_' + subject_name + '.csv'
+path_result_apfd = 'parameter_results/apfd' + '_' + subject_name + '.csv'
 
 num_node_features, num_classes, x, edge_index, y, test_y, train_y, train_idx, test_idx = load_data(path_x_np, path_edge_index, path_y)
 path_model_list = get_model_path(path_model_file)
