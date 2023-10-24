@@ -1,8 +1,8 @@
 
 select_ratio_list = [0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
 
-hidden_channel_list = list(range(17, 20))
 
+hidden_channel_list = [5, 10, 15, 20] #
 
 epochs_gcn = [60]
 dic_mutation_gcn = {
@@ -15,9 +15,9 @@ dic_mutation_gcn = {
 
 epochs_gat = [40, 50, 55, 60]
 dic_mutation_gat = {
-    "heads": [4, 5], #
+    "heads": [2, 4, 6, 8], #
     "concat": [True],
-    "negative_slope": [0.1, 0.2], #
+    "negative_slope": [0.1, 0.2, 0.3, 0.4], #
     "add_self_loops": [True, False],
     "bias": [True, False]
 }
