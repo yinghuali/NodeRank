@@ -1,9 +1,0 @@
-citeseer_tagcn_fusion,0.733973973973974
-citeseer_tagcn_deepGini,0.6276843510176844
-citeseer_tagcn_vanillasm,0.6728194861528196
-citeseer_tagcn_pcs,0.6803336670003337
-citeseer_tagcn_entropy,0.6182482482482483
-citeseer_tagcn_random,0.492952952952953
-citeseer_tagcn_fusion_weight,0.733973973973974
-citeseer_tagcn_fusion_stacking,0.6916116116116117
-citeseer_tagcn_fusion_voting,0.6928862195528862

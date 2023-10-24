@@ -1,9 +1,0 @@
-cora_graphsage_fusion,0.8099814580235355
-cora_graphsage_deepGini,0.7101362804672823
-cora_graphsage_vanillasm,0.7352260836041197
-cora_graphsage_pcs,0.7183118846113834
-cora_graphsage_entropy,0.70522235073097
-cora_graphsage_random,0.5112659335548579
-cora_graphsage_fusion_weight,0.8099814580235355
-cora_graphsage_fusion_stacking,0.7855525570181074
-cora_graphsage_fusion_voting,0.7882022850079247

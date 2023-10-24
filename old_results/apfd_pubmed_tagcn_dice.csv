@@ -1,9 +1,0 @@
-pubmed_tagcn_dice_fusion,0.7678697990907912
-pubmed_tagcn_dice_deepGini,0.6140607796416233
-pubmed_tagcn_dice_vanillasm,0.6463944814539582
-pubmed_tagcn_dice_pcs,0.6470857101551226
-pubmed_tagcn_dice_entropy,0.6153957446846022
-pubmed_tagcn_dice_random,0.5008805369920301
-pubmed_tagcn_dice_fusion_weight,0.7680333226668359
-pubmed_tagcn_dice_fusion_stacking,0.7360512406194326
-pubmed_tagcn_dice_fusion_voting,0.728828655501224
