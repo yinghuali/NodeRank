@@ -54,25 +54,25 @@ def get_filter_path(save_name):
     new_hidden_channel_list = []
     if save_name=='hidden5':
         for i in range(len(all_hidden_channel_list)):
-            if hidden_channel_list[i]==5:
+            if all_hidden_channel_list[i]==5:
                 new_path_model_list.append(all_path_model_list[i])
                 new_path_config_list.append(all_path_config_list[i])
                 new_hidden_channel_list.append(all_hidden_channel_list[i])
     if save_name=='hidden10':
         for i in range(len(all_hidden_channel_list)):
-            if hidden_channel_list[i]==10:
+            if all_hidden_channel_list[i]==10:
                 new_path_model_list.append(all_path_model_list[i])
                 new_path_config_list.append(all_path_config_list[i])
                 new_hidden_channel_list.append(all_hidden_channel_list[i])
     if save_name=='hidden15':
         for i in range(len(all_hidden_channel_list)):
-            if hidden_channel_list[i]==15:
+            if all_hidden_channel_list[i]==15:
                 new_path_model_list.append(all_path_model_list[i])
                 new_path_config_list.append(all_path_config_list[i])
                 new_hidden_channel_list.append(all_hidden_channel_list[i])
     if save_name=='hidden20':
         for i in range(len(all_hidden_channel_list)):
-            if hidden_channel_list[i]==20:
+            if all_hidden_channel_list[i]==20:
                 new_path_model_list.append(all_path_model_list[i])
                 new_path_config_list.append(all_path_config_list[i])
                 new_hidden_channel_list.append(all_hidden_channel_list[i])
@@ -140,7 +140,8 @@ def get_filter_path(save_name):
                     new_path_model_list.append(all_path_model_list[i])
                     new_path_config_list.append(all_path_config_list[i])
                     new_hidden_channel_list.append(all_hidden_channel_list[i])
-
+    if len(new_path_model_list) == 0:
+        return all_path_model_list, all_path_config_list, all_hidden_channel_list
     return new_path_model_list, new_path_config_list, new_hidden_channel_list
 
 
