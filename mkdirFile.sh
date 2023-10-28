@@ -1,0 +1,17 @@
+mkdir ./mutation_models
+mkdir ./mutation_models/citeseer_gat
+mkdir ./mutation_models/citeseer_gcn
+mkdir ./mutation_models/citeseer_graphsage
+mkdir ./mutation_models/citeseer_tagcn
+mkdir ./mutation_models/cora_gat
+mkdir ./mutation_models/cora_gcn
+mkdir ./mutation_models/cora_graphsage
+mkdir ./mutation_models/cora_tagcn
+mkdir ./mutation_models/lastfm_gat
+mkdir ./mutation_models/lastfm_gcn
+mkdir ./mutation_models/lastfm_graphsage
+mkdir ./mutation_models/lastfm_tagcn
+mkdir ./mutation_models/pubmed_gat
+mkdir ./mutation_models/pubmed_gcn
+mkdir ./mutation_models/pubmed_graphsage
+mkdir ./mutation_models/pubmed_tagcn
