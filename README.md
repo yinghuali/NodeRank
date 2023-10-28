@@ -13,7 +13,7 @@ NodeRank is a test prioritization approach for GNNs.
     results: experiment results of paper.
     target_models: GNN models.
     ----------------------
-    config.py: configuration script
+    config.py: configuration script.
     feature_analysis.py: script of feature contribution.
     get_attack.py: script of attack dataset generation.
     get_mutation_models.py: script of model mutants generation.
@@ -32,10 +32,10 @@ NodeRank is a test prioritization approach for GNNs.
     
 
 ## Usage
-- Directory preparation:  
+- Step1: Directory preparation:  
 ```sh mkdirFile.sh```
 
-- Mutants Generation
+- Step2: Mutants Generation
     - Graph structure mutants generation  
     ```sh structure_mutants.sh```
     - Node feature mutants generation  
@@ -43,5 +43,5 @@ NodeRank is a test prioritization approach for GNNs.
     - Graph models mutants generation  
     ```sh models_mutants.sh```
       
-- Run NodeRank  
+- Step3: Run NodeRank  
 ```sh run_NodeRank.sh```
