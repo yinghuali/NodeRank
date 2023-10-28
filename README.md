@@ -12,6 +12,7 @@ NodeRank is our proposed test prioritization approach specifically for GNNs.
     data: processed and structured dataset.
     example_shell: scripts to obtain the experimental results of the paper. 
     models: scripts to get the GNN models.
+    parameter_analysis: parameter analysis.
     results: experimental results of the paper.
     target_models: the evaluated GNN models.
     ----------------------
