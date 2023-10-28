@@ -22,6 +22,13 @@ NodeRank is a test prioritization approach for GNNs.
     get_rank_idx.py: script for ranking.
     utils.py: tool script.
     main.py: main script.
+    ----------------------
+    mkdirFile.sh: directory preparation.
+    structure_mutants.sh: graph structure mutants generation.
+    node_feature_mutants.sh: node feature mutants generation.
+    models_mutants.sh: graph models mutants generation.
+    run_NodeRank.sh: run noderank to get all results.
+
     
 
 ## Usage
