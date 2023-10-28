@@ -36,5 +36,5 @@ NodeRank is a test prioritization approach for GNNs.
     - Graph models mutants generation  
     ```sh models_mutants.sh```
       
-#### Run main
-    python main.py --path_model_file './mutation_models/cora_gcn' --model_name 'gcn' --target_model_path './target_models/cora_gcn.pt' --path_x_np './data/cora/x_np.pkl' --path_edge_index './data/cora/edge_index_np.pkl' --path_y './data/cora/y_np.pkl' --subject_name 'cora_gcn' --path_mutation_edge_index_np_list './data/cora/mutation_edge_index_np_list.pkl' --path_mutation_x_np_list './data/cora/mutation_x_np_list.pkl'
+- Run NodeRank  
+```sh run_NodeRank.sh```
