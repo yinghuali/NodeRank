@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10049979.svg)](https://doi.org/10.5281/zenodo.10049979)
 # NodeRank
 NodeRank is our proposed test prioritization approach specifically for GNNs.
 
