@@ -32,16 +32,15 @@ NodeRank is a test prioritization approach for GNNs.
     
 
 ## Usage
-- Step1: Directory preparation:  
+### Step1: Directory preparation:  
 ```sh mkdirFile.sh```
 
-- Step2: Mutants Generation
-    - Graph structure mutants generation  
+### Step2: Mutants Generation
+- Graph structure mutants generation  
     ```sh structure_mutants.sh```
-    - Node feature mutants generation  
+- Node feature mutants generation  
     ```sh node_feature_mutants.sh```
-    - Graph models mutants generation  
+- Graph models mutants generation  
     ```sh models_mutants.sh```
-      
-- Step3: Run NodeRank  
+### Step3: Run NodeRank  
 ```sh run_NodeRank.sh```
