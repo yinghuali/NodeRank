@@ -1,10 +1,13 @@
-# Source Code of NodeRank
+# NodeRank
+NodeRank is a test prioritization approach for GNNs.
 ## Main Requirements
     PyTorch 1.11.0
     PyTorch Geometric 2.1.0
     XGBoost 1.4.2
     LighGBM 3.3.2
     scikit-learn 0.24.2
+
+## Usage
 
 #### Attack data generation
     python get_attack.py --path_x_np './data/pubmed/x_np.pkl' --path_edge_index './data/pubmed/edge_index_np.pkl' --path_y './data/pubmed/y_np.pkl' --save_edge_index './data/attack_data/pubmed/pubmed'
