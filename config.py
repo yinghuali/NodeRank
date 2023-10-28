@@ -15,9 +15,9 @@ dic_mutation_gcn = {
 
 epochs_gat = [40, 50, 55, 60]
 dic_mutation_gat = {
-    "heads": [4, 5], #
+    "heads": [4, 5],
     "concat": [True],
-    "negative_slope": [0.1, 0.2], #
+    "negative_slope": [0.1, 0.2],
     "add_self_loops": [True, False],
     "bias": [True, False]
 }
