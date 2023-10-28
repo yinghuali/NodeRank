@@ -12,11 +12,24 @@ NodeRank is a test prioritization approach for GNNs.
     models: scripts to get GNN models.
     results: experiment results of paper.
     target_models: GNN models.
+    ----------------------
+    config.py: configuration script
+    feature_analysis.py: script of feature contribution.
+    get_attack.py: script of attack dataset generation.
+    get_mutation_models.py: script of model mutants generation.
+    mutation_node_edge.py: script of graph structure mutants generation.
+    mutation_node_feature.py: script of node feaure mutants generation.
+    get_rank_idx.py: script for ranking.
+    utils.py: tool script.
+    main.py: main script.
+    
 
 ## Usage
 - Directory preparation:
+  
+```sh mkdirFile.sh```
 
-    sh mkdirFile.sh
+- Mutants Generation
     
 #### Attack data generation
     python get_attack.py --path_x_np './data/pubmed/x_np.pkl' --path_edge_index './data/pubmed/edge_index_np.pkl' --path_y './data/pubmed/y_np.pkl' --save_edge_index './data/attack_data/pubmed/pubmed'
